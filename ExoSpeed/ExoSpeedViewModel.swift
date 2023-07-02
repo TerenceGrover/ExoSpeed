@@ -92,8 +92,8 @@ class ExoSpeedViewModel: ObservableObject {
         self.isTracking = false
 
         var totalTime = 0.0
-        if let lastUpdate = self.lastUpdateTime {
-            totalTime = Date().timeIntervalSince(lastUpdate)
+        if let start = self.startTime {
+            totalTime = Date().timeIntervalSince(start)
         }
         self.timeToComplete = totalTime
         if let pullUpsCompleted = Int(self.pullUpCount), pullUpsCompleted != 0 {
@@ -118,6 +118,7 @@ class ExoSpeedViewModel: ObservableObject {
         // Clear results
         self.startTime = nil
     }
+
     
     private func playSound() {
         guard let url = Bundle.main.url(forResource: "Chime", withExtension: "mp3") else { return }
